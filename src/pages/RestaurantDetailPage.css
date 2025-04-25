@@ -1,0 +1,155 @@
+/* src/pages/RestaurantDetailPage.css */
+
+.restaurant-detail-page {
+  padding: 1rem 2rem;
+  max-width: 1100px;
+  margin: 1rem auto;
+  font-family: sans-serif; /* Or inherit from index.css */
+}
+
+.detail-header {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1.5rem;
+}
+.detail-header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+/* Add other specific header styles here if needed */
+
+
+.menu-section {
+  margin-bottom: 2rem;
+}
+.menu-section > h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    color: #333;
+    border-bottom: 2px solid #eee; /* Lighter border */
+    padding-bottom: 0.5rem;
+}
+
+/* Styles for each category group */
+.menu-category-section {
+  margin-bottom: 2.5rem;
+}
+
+.menu-category-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #444; /* Less prominent than page title */
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0; /* Lighter border */
+}
+
+/* Grid layout for menu items */
+.menu-item-grid {
+  display: grid;
+  /* Responsive columns: min 280px wide, max 1fr */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem; /* Space between cards */
+}
+
+/* Individual Menu Item Card Styles */
+.menu-item-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.menu-item-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item-image-container {
+  width: 100%;
+  padding-top: 60%; /* Aspect ratio ~5:3 */
+  position: relative;
+  background-color: #f0f0f0; /* Slightly darker placeholder */
+}
+
+.menu-item-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.menu-item-content {
+  padding: 0.8rem 1rem;
+  flex-grow: 1; /* Allows content to push footer down */
+}
+
+.menu-item-name {
+  font-size: 1.05em;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.menu-item-description {
+  font-size: 0.85em;
+  color: #666;
+  line-height: 1.4;
+  margin-top: 0.2rem;
+  /* Optional: Limit lines shown */
+  /* display: -webkit-box; */
+  /* -webkit-line-clamp: 2; */
+  /* -webkit-box-orient: vertical; */
+  /* overflow: hidden; */
+}
+
+.menu-item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 0.5rem; /* Space above footer */
+}
+
+.menu-item-price {
+  font-weight: bold;
+  font-size: 1.05em;
+  color: #333;
+}
+
+.menu-item-add-button {
+  font-size: 0.9em;
+  padding: 6px 14px;
+  cursor: pointer;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item-add-button:hover {
+  background-color: #c0392b;
+}
+
+/* --- Ensure other styles from HomePage.css needed are present or imported --- */
+/* Example: You might need .error-message from HomePage.css if errors occur */
+.error-message {
+    color: #e74c3c;
+    font-weight: 500;
+    background-color: #fceeee;
+    border: 1px solid #f8c8c5;
+    border-radius: 4px;
+    padding: 1rem;
+    text-align: center;
+}

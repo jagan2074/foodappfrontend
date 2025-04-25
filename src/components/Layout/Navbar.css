@@ -1,0 +1,259 @@
+/* src/components/Layout/Navbar.css */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem; /* Use rem for scalable units */
+  background-color: #ffffff;
+  /* Softer shadow */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 68px; /* Slightly taller for better spacing */
+  box-sizing: border-box;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem; /* Slightly larger icon */
+  cursor: pointer;
+  color: var(--text-dark); /* Use variable */
+  padding: 8px; /* Add padding */
+  margin-right: 0.8rem;
+  border-radius: 50%; /* Circular background on hover */
+  transition: background-color 0.2s ease;
+}
+.hamburger-btn:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Logo */
+.navbar-logo {
+    margin-right: auto;
+    padding-right: 1rem; /* Ensure space after logo */
+}
+.navbar-logo a {
+  color: var(--primary-color); /* Use variable */
+  text-decoration: none;
+  font-size: 1.7rem; /* Slightly larger */
+  font-weight: 700; /* Bolder */
+  letter-spacing: -0.5px; /* Slight adjustment */
+}
+.navbar-logo a:hover {
+  color: var(--primary-color-dark);
+  text-decoration: none; /* Remove underline */
+}
+
+/* Center Section (Address) */
+.navbar-center {
+  /* Hidden on mobile by .hide-mobile */
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+.address-display {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 15px; /* More padding */
+  border-radius: 20px; /* Rounded pill */
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+  max-width: 400px; /* Adjust max width */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: #f1f3f5; /* Light grey background */
+  border: 1px solid var(--border-color);
+}
+.address-display:hover {
+  background-color: #e9ecef; /* Slightly darker grey */
+  border-color: #adb5bd;
+}
+.address-icon {
+  margin-right: 8px;
+  color: var(--primary-color);
+  font-size: 1.1em; /* Make icon slightly larger */
+  /* Replace [ICON] text with actual icon component */
+}
+.address-text {
+  font-weight: 500;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+
+/* Main Desktop Links */
+.navbar-main-links {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* More spacing */
+  margin: 0 2.5rem; /* More spacing */
+}
+.navbar-main-links a,
+.navbar-main-links .nav-link-button { /* Style button like link */
+  text-decoration: none;
+  color: var(--dark-gray); /* Use variable */
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 5px 0; /* Add some vertical padding for click area */
+  border-bottom: 2px solid transparent; /* Prepare for hover effect */
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.navbar-main-links a:hover,
+.navbar-main-links .nav-link-button:hover {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color); /* Underline on hover */
+  text-decoration: none; /* Ensure no default underline */
+}
+/* Reset button styles for nav-link-button */
+.nav-link-button {
+    background: none;
+    border: none; /* Override base button border */
+    padding: 5px 0;
+    margin: 0;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+
+/* Right Section (Actions) */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Adjust spacing */
+}
+
+/* Buttons (General) */
+.navbar-actions .nav-button {
+  border: 1px solid var(--border-color);
+  padding: 7px 18px; /* Adjusted padding */
+  border-radius: 6px; /* Slightly more rounded */
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Icon Buttons */
+.navbar-actions .icon-button {
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center icon */
+  position: relative;
+  color: var(--dark-gray); /* Use variable */
+  background-color: transparent;
+  border-radius: 50%;
+  width: 40px; /* Ensure circular area */
+  height: 40px;
+  transition: background-color 0.2s ease;
+}
+.navbar-actions .icon-button:hover {
+  background-color: rgba(0,0,0,0.05); /* Subtle hover background */
+}
+
+/* Specific Buttons */
+.navbar-actions .signin-btn {
+   border-color: var(--border-color);
+   color: var(--text-dark);
+   background-color: #fff; /* Ensure background */
+}
+.navbar-actions .signin-btn:hover {
+   background-color: #f8f9fa; /* Light hover */
+   border-color: #adb5bd;
+}
+
+.navbar-actions .signup-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+.navbar-actions .signup-btn:hover {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color-dark);
+}
+
+/* Username Display */
+.username-display {
+    font-weight: 500;
+    margin: 0 10px;
+    color: var(--text-dark);
+    white-space: nowrap;
+    font-size: 0.9rem;
+}
+
+/* Logout Button */
+.logout-btn {
+  border-color: #ffcdd2; /* Lighter red border */
+  color: var(--primary-color);
+  background-color: #fff5f5; /* Very light red background */
+}
+.logout-btn:hover {
+  background-color: #ffe3e3;
+  border-color: #f5c1c6;
+  color: var(--primary-color-dark);
+}
+
+
+/* Cart Badge */
+.cart-badge {
+  position: absolute;
+  top: 4px;  /* Adjust position */
+  right: 4px; /* Adjust position */
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  min-width: 18px; /* Use min-width */
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0 5px; /* Add horizontal padding for multiple digits */
+  box-shadow: 0 0 0 2px #fff; /* White border around badge */
+}
+
+
+/* --- Media Query for Mobile --- */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0 1rem;
+    height: 60px; /* Slightly shorter on mobile */
+  }
+  .hamburger-btn {
+    display: block; /* Show hamburger */
+    order: -1; /* Move hamburger to the start */
+  }
+  .navbar-logo {
+      margin-right: 0;
+      flex-grow: 1;
+      text-align: center;
+      /* Optional: slightly smaller logo on mobile */
+      /* a { font-size: 1.4rem; } */
+  }
+  .hide-mobile {
+    display: none; /* Hide elements marked for desktop */
+  }
+  .navbar-actions {
+     /* Keep only essential actions */
+     gap: 5px; /* Reduce gap */
+  }
+  .navbar-actions .icon-button {
+     color: #333; /* Ensure icon color */
+     width: 36px; /* Slightly smaller tap target */
+     height: 36px;
+  }
+  .cart-badge {
+    top: 2px;
+    right: 2px;
+    min-width: 16px;
+    height: 16px;
+    font-size: 0.65rem;
+    padding: 0 4px;
+  }
+}

@@ -1,0 +1,453 @@
+
+
+
+/* src/pages/HomePage.css */
+
+/* --- General Body/Font (Consider moving to index.css for global effect) --- */
+body {
+    font-family: 'Inter', 'Roboto', sans-serif; /* Example modern font stack */
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* --- Hero Section Styles --- */
+  .hero-section {
+    /* Default/Fallback Background */
+    background-color: #FEF3E0; /* Warm light beige/peach */
+    background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), /* Slightly darker gradient */
+                      var(--hero-bg-image, url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzM4NHwwfDF8c2VhcmNofDEyfHxmb29kfGVufDB8fHx8MTcxNjA0NzUzN3ww&ixlib=rb-4.0.3&q=80&w=1200'));
+    background-size: cover;
+    background-position: center center;
+    padding: 8rem 2rem 6rem 2rem; /* More vertical padding */
+    text-align: center;
+    color: #fff; /* Ensure text is white */
+    position: relative;
+    min-height: 450px; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hide gradient overflow if needed */
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem; /* Slightly larger */
+    font-weight: 700; /* Bold */
+    margin-bottom: 1.5rem; /* More space */
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.7); /* Enhanced shadow */
+    line-height: 1.2;
+  }
+  
+  .address-search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem; /* More space */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18); /* Softer, larger shadow */
+    border-radius: 50px; /* Fully rounded */
+    overflow: hidden;
+    max-width: 700px; /* Wider */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    border: 1px solid #eee; /* Subtle border */
+  }
+  
+  .address-search-bar input[type="text"] {
+    padding: 1.1rem 1.8rem; /* More padding */
+    font-size: 1.05rem; /* Slightly larger font */
+    border: none;
+    flex-grow: 1;
+    outline: none;
+    color: #333;
+    border-radius: 50px 0 0 50px;
+  }
+  .address-search-bar input::placeholder {
+      color: #999; /* Lighter placeholder */
+  }
+  
+  .address-search-bar button {
+    padding: 1.1rem 2.2rem; /* More padding */
+    font-size: 1.05rem;
+    background-color: var(--primary-color); /* Use variable */
+    color: white;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    border-radius: 0 50px 50px 0;
+    transition: background-color 0.2s ease;
+  }
+  .address-search-bar button:hover {
+      background-color: var(--primary-color-dark);
+  }
+  
+  
+  /* --- Main Content Area --- */
+  .main-content {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff; /* Ensure content below hero is white */
+  }
+  
+  /* Categories Section Styles */
+  .categories-section {
+    margin-bottom: 4rem;
+  }
+  
+  .categories-section h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .categories-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem; /* Keep gap reasonable */
+    flex-wrap: wrap;
+  }
+  
+  .category-item {
+    padding: 0.8rem 1.5rem; /* Adjust padding */
+    border: 1px solid #eee; /* Light border */
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #555; /* Slightly darker text */
+    background-color: #fff; /* White background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  }
+  .category-item:hover {
+      background-color: #f8f9fa; /* Light grey hover */
+      color: var(--primary-color); /* Use primary color for text */
+      border-color: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  }
+  
+  
+  /* Restaurants Section Styles */
+  .restaurants-section {
+    margin-bottom: 3rem;
+  }
+  
+  .restaurants-section h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Grid for restaurant cards */
+  .restaurant-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust min width */
+    gap: 1.8rem;
+  }
+  
+  /* Loading/Error states styling */
+  .loading-indicator,
+  .restaurants-error,
+  .restaurant-list-grid > p {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #666;
+      grid-column: 1 / -1;
+      font-size: 1.1rem;
+  }
+  
+  .restaurants-error {
+      color: #e74c3c;
+      font-weight: 500;
+      background-color: #fceeee;
+      border: 1px solid #f8c8c5;
+      border-radius: 4px;
+  }
+  
+  /* Import or include Restaurant Card styles if not done elsewhere */
+  /* Assuming RestaurantCard.css is imported by RestaurantCard.js */
+  
+  /* Styles needed if RestaurantDashboard styles are also in this file */
+  .restaurant-dashboard { /* Basic container */
+      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+  }
+  /* ... other dashboard styles copied previously ... */
+.dashboard-section {
+    margin-bottom: 2.5rem;
+}
+
+.dashboard-section h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: left; /* Align section headers left */
+}
+
+.dashboard-section h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #444;
+}
+
+/* Menu List Styling */
+.menu-list-container {
+    margin-top: 1rem;
+}
+
+.menu-category-group {
+    margin-bottom: 1.5rem; /* Space between category groups */
+}
+
+.menu-category-group h4 {
+    font-size: 1.2em;
+    color: #e74c3c; /* Primary color for category */
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items top */
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #eee;
+}
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item.inactive {
+    opacity: 0.6;
+    background-color: #f9f9f9;
+}
+.menu-item.inactive .item-name {
+    text-decoration: line-through;
+}
+
+.item-info {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.item-name {
+    font-weight: 600;
+    color: #333;
+    display: block; /* Ensure block display */
+    margin-bottom: 0.2rem;
+}
+
+.item-description {
+    font-size: 0.85em;
+    color: #666;
+    display: block; /* Ensure block display */
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    margin-left: 1rem; /* Ensure space from info */
+}
+
+.item-price {
+    font-weight: bold;
+    color: #333;
+    margin-right: 1rem; /* Space before buttons */
+    min-width: 60px; /* Align prices */
+    text-align: right;
+}
+
+/* Basic styling for Edit/Delete buttons */
+.item-actions .btn-edit,
+.item-actions .btn-delete {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.item-actions .btn-edit {
+    background-color: #f0f0f0;
+    color: #333;
+}
+.item-actions .btn-edit:hover {
+    background-color: #e0e0e0;
+}
+.item-actions .btn-delete {
+    background-color: #fceeee;
+    color: #c0392b;
+    border-color: #f8c8c5;
+}
+.item-actions .btn-delete:hover {
+     background-color: #f8c8c5;
+}
+.item-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* Add Item Form Styling */
+.add-item-form-container {
+    background-color: #fdfdfd;
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.add-item-form .form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.add-item-form .form-group {
+    margin-bottom: 1rem;
+    flex: 1; /* Allow items in row to share space */
+    min-width: 150px; /* Minimum width for inputs in a row */
+}
+
+.add-item-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.add-item-form input[type="text"],
+.add-item-form input[type="number"],
+.add-item-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+.add-item-form input:focus,
+.add-item-form textarea:focus {
+    border-color: #e74c3c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.15);
+}
+
+.add-item-form textarea {
+    resize: vertical; /* Allow vertical resize */
+}
+
+/* Add Item Submit/Cancel buttons */
+.add-item-form .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.add-item-form .submit-btn.add-item-btn {
+    width: auto; /* Don't force full width */
+    padding: 10px 20px;
+    background-color: #27ae60; /* Green for add */
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.add-item-form .submit-btn.add-item-btn:hover {
+     background-color: #229954;
+}
+.add-item-form .submit-btn:disabled {
+     background-color: #a9dfbf;
+     cursor: not-allowed;
+     opacity: 0.7;
+}
+
+.add-item-form .cancel-btn {
+     width: auto;
+     padding: 10px 20px;
+     background-color: #f0f0f0;
+     color: #555;
+     border: 1px solid #ccc;
+     font-weight: bold;
+     cursor: pointer;
+     border-radius: 4px;
+}
+.add-item-form .cancel-btn:hover {
+     background-color: #e0e0e0;
+}
+
+
+.add-item-form .error-message {
+    color: #e74c3c; /* Red for errors */
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* Simple divider */
+.form-divider {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 1.5rem 0;
+}
+.form-section-title {
+    margin-bottom: 1rem;
+    color: #555;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Active/Inactive Toggle */
+.toggle-active label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: normal; /* Override default bold label */
+    color: #444;
+}
+.toggle-active input[type="checkbox"] {
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+/* General Section Divider */
+hr.section-divider {
+    border: none;
+    border-top: 2px solid #f0f0f0;
+    margin: 2.5rem 0;
+}
+.category-item.active {
+    background-color: var(--primary-color); /* Use primary color */
+    color: #fff; /* White text */
+    border-color: var(--primary-color-dark); /* Darker border */
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* Style for the 'Show All' button */
+  .category-item.all-btn {
+      background-color: #6c757d; /* Secondary/Gray color */
+      color: #fff;
+      border-color: #5a6268;
+  }
+  .category-item.all-btn:hover {
+       background-color: #5a6268;
+  }

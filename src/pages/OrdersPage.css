@@ -1,0 +1,153 @@
+/* src/pages/OrdersPage.css */
+
+.orders-page {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+}
+
+.orders-page h1 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.orders-page-logged-out {
+    text-align: center;
+    padding: 3rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.orders-page-logged-out h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.orders-page-logged-out p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+.orders-page-logged-out a {
+    color: #e74c3c;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
+.order-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-list-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    overflow: hidden; /* In case child elements have weird margins */
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Wrap on small screens */
+    background-color: #f9f9f9;
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #555;
+    gap: 1rem; /* Space between header items */
+}
+
+.order-date {
+    font-weight: 500;
+}
+
+.order-status {
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 12px; /* Pill shape */
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Example Status Colors */
+.status-pending { background-color: #fef3c7; color: #92400e; }
+.status-confirmed { background-color: #dbeafe; color: #1e40af; }
+.status-preparing { background-color: #ede9fe; color: #5b21b6; }
+.status-out-for-delivery { background-color: #d1fae5; color: #047857; }
+.status-delivered { background-color: #dcfce7; color: #166534; }
+.status-cancelled, .status-failed { background-color: #fee2e2; color: #991b1b; }
+
+
+.order-id {
+    font-family: monospace;
+    color: #777;
+}
+
+.order-details {
+    padding: 1.2rem;
+    display: flex;
+    align-items: center; /* Align items vertically */
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.order-restaurant-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 150px; /* Min width for restaurant info */
+    flex: 1; /* Allow it to grow */
+}
+
+.order-restaurant-info img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.order-restaurant-info span {
+    font-weight: 500;
+    color: #333;
+}
+
+.order-item-summary {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+    flex: 2; /* Allow item list to take more space */
+    min-width: 200px;
+}
+.order-item-summary li {
+    margin-bottom: 0.2rem;
+}
+.order-item-summary li:last-child {
+    margin-bottom: 0;
+}
+
+
+.order-total {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+    text-align: right;
+    min-width: 100px; /* Align totals */
+    flex-shrink: 0;
+}
+
+/* General loading/error message styling if needed */
+.orders-page .error-message {
+    color: #e74c3c;
+    text-align: center;
+    padding: 1rem;
+}
