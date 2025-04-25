@@ -1,7 +1,7 @@
 // src/services/adminService.js
 import axios from 'axios';
 
-const API_ADMIN_URL = 'http://localhost:5000/api/admin';
+const API_ADMIN_URL = 'https://foodappbackend-sjfy.onrender.com/api/admin';
 const getToken = () => localStorage.getItem('token');
 
 const getPendingRestaurants = async () => {

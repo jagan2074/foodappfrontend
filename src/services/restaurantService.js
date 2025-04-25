@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Base URL for restaurant API
-const API_RESTAURANT_URL = 'http://localhost:5000/api/restaurants';
+const API_RESTAURANT_URL = 'https://foodappbackend-sjfy.onrender.com/api/restaurants';
 
 /**
  * Fetches a list of all active restaurants from the backend.

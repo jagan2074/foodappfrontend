@@ -1,7 +1,7 @@
 // src/services/orderService.js
 import axios from 'axios';
 
-const API_ORDER_URL = 'http://localhost:5000/api/orders';
+const API_ORDER_URL = 'https://foodappbackend-sjfy.onrender.com/api/orders';
 const getToken = () => localStorage.getItem('token');
 
 /**

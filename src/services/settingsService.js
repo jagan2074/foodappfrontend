@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Base URL for PUBLIC settings part of the API
-const API_SETTINGS_URL = 'http://localhost:5000/api/settings';
+const API_SETTINGS_URL = 'https://foodappbackend-sjfy.onrender.com/api/settings';
 
 /**
  * Fetches publicly accessible settings (like hero image URL).

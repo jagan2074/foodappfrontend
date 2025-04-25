@@ -1,7 +1,7 @@
 // src/services/menuItemService.js
 import axios from 'axios';
 
-const API_RESTAURANT_URL = 'http://localhost:5000/api/restaurants';
+const API_RESTAURANT_URL = 'https://foodappbackend-sjfy.onrender.com/api/restaurants';
 const getToken = () => localStorage.getItem('token');
 
 const getMenuItemsByRestaurant = async (restaurantId) => {

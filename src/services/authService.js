@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Define the *backend* API URL
-const API_BASE_URL = 'http://localhost:5000/api/auth'; // Points to your server on port 5000
+const API_BASE_URL ='https://foodappbackend-sjfy.onrender.com/api/auth'; // Points to your server on port 5000
 
 const sendOtp = async (data) => {
   try {

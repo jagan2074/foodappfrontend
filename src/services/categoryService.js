@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Base URL for CATEGORY part of the API
-const API_CATEGORY_URL = 'http://localhost:5000/api/categories';
+const API_CATEGORY_URL = 'https://foodappbackend-sjfy.onrender.com/api/categories';
 
 /**
  * Fetches all categories from the backend.
