@@ -1,59 +1,85 @@
 // src/components/Restaurants/RestaurantCard.js
-
 import React from 'react';
 import './RestaurantCard.css';
 import { useNavigate } from 'react-router-dom';
 
 const RestaurantCard = ({ restaurant }) => {
+  // <<<--- 1. Log the received prop ---<<<
   console.log("RestaurantCard received prop:", restaurant);
 
   const navigate = useNavigate();
 
+  // Destructure props safely
   const {
     _id,
-    name = '',
-    location = '',
-    cuisine = '',
-    imageUrl = '',
-    rating = '',
-    deliveryTime = '',
-    priceRange = '',
+    name = 'Restaurant Name',
+    cuisine = [],
+    imageUrl = '', // Default to empty string instead of placeholder URL
+    rating = 0,
+    numberOfReviews = 0,
+    deliveryTimeMinutes = '--',
+    deliveryFee = null,
+    priceRange = ''
   } = restaurant || {};
 
+  // <<<--- 2. Log the destructured imageUrl ---<<<
   console.log(`RestaurantCard: Image URL for ${name}:`, imageUrl);
 
-  const isValidImageUrl = typeof imageUrl === 'string' && imageUrl.startsWith('http');
-  console.log(`RestaurantCard: Image URL "${imageUrl}" is valid?`, isValidImageUrl);
+  const cuisineStr = cuisine.join(', ');
+  const deliveryFeeStr = (deliveryFee === null || deliveryFee === undefined)
+    ? '' : deliveryFee === 0 ? 'Free Delivery' : `$${deliveryFee.toFixed(2)}`;
+  const renderRatingStars = (ratingValue) => `★ ${ratingValue.toFixed(1)}`;
 
-  const handleCardClick = () => {
-    navigate(`/restaurant/${_id}`);
-  };
+  // src/components/Restaurants/RestaurantCard.js
+const handleCardClick = () => {
+  if (_id) {
+    // --- CHANGE HERE: Use plural 'restaurants' ---
+    navigate(`/restaurants/${_id}`);
+    // --- END CHANGE ---
+  } else {
+    console.error("Cannot navigate, restaurant ID missing.");
+  }
+};
+
+  // Basic check if URL looks potentially valid (starts with http)
+  const isValidImageUrl = typeof imageUrl === 'string' && imageUrl.startsWith('http');
 
   return (
-    <article className="restaurant-card" onClick={handleCardClick}>
+    <article className="restaurant-card" data-id={_id} tabIndex={0} onClick={handleCardClick}>
       <div className="restaurant-card-image">
+        {/* 3. Conditionally render image only if URL seems valid */}
         {isValidImageUrl ? (
-          <img
-            src={imageUrl}
-            alt={`Image of ${name}`}
-            loading="lazy"
-          />
+          <img src={imageUrl} alt={`Image of ${name}`} loading="lazy" />
         ) : (
-          <div className="image-placeholder-fallback">
-            No Image
-          </div>
+          // Optional: Display a placeholder div if image URL is invalid/missing
+          <div className="image-placeholder-fallback">No Image</div>
         )}
       </div>
-
       <div className="restaurant-card-content">
-        <h2 className="restaurant-name">{name}</h2>
-        <p className="restaurant-location">{location}</p>
-        <p className="restaurant-cuisine">{cuisine}</p>
-        <div className="restaurant-card-meta">
-          <span className="restaurant-rating">⭐ {rating}</span>
-          <span className="restaurant-delivery-time">⏱ {deliveryTime}</span>
-          <span className="restaurant-price">{priceRange}</span>
+        <h3 className="restaurant-card-name">{name}</h3>
+        {cuisineStr && <p className="restaurant-card-cuisine">{cuisineStr}</p>}
+        <div className="restaurant-card-info-row">
+          {rating > 0 && numberOfReviews > 0 && (
+            <span className="info-item rating">
+              {renderRatingStars(rating)} ({numberOfReviews})
+            </span>
+          )}
+          {deliveryTimeMinutes !== '--' && (
+            <span className="info-item delivery-time">
+              {deliveryTimeMinutes} min
+            </span>
+          )}
+          {priceRange && (
+            <span className="info-item price-range">
+              {priceRange}
+            </span>
+          )}
         </div>
+        {deliveryFeeStr && (
+          <div className="restaurant-card-delivery-fee">
+            {deliveryFeeStr}
+          </div>
+        )}
       </div>
     </article>
   );
