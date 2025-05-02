@@ -34,7 +34,7 @@ const Signup = ({ switchToLogin, onOtpSent, isRestaurantMode = false, onCloseMod
    }, [isRestaurantMode]);
 
 
-  const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccessMessage('');
@@ -42,17 +42,22 @@ const Signup = ({ switchToLogin, onOtpSent, isRestaurantMode = false, onCloseMod
 
     // --- Validation ---
     if (!email || !username) {
-        setError('Please enter email and username.');
-        setIsLoading(false);
-        return;
+      setError('Please enter email and username.');
+      setIsLoading(false);
+      return;
     }
-    // If restaurant signup, validate restaurant fields (now including optional imageUrl check if needed)
-    if (isRestaurantSignup && (!restaurantName || !addressStreet || !addressCity || !addressState || !addressZip /* || !restaurantImageUrl - if required */)) {
-        setError('Please fill in all required restaurant details (Name, Full Address). Image URL is optional.');
+    // If restaurant signup, validate restaurant fields
+    if (isRestaurantSignup && (!restaurantName || !addressStreet || !addressCity || !addressState || !addressZip )) {
+        setError('Please fill in all required restaurant details (Name & Full Address). Image URL is optional.');
         setIsLoading(false);
         return;
     }
     // Optional: Add URL validation for restaurantImageUrl if provided
+    if (isRestaurantSignup && restaurantImageUrl.trim() && !restaurantImageUrl.startsWith('http')) {
+      setError('Please enter a valid URL (starting with http/https) for the image.');
+      setIsLoading(false);
+      return;
+  }
 
     // --- Prepare Data for API ---
     const apiData = {
@@ -74,16 +79,18 @@ const Signup = ({ switchToLogin, onOtpSent, isRestaurantMode = false, onCloseMod
           apiData.imageUrl = restaurantImageUrl.trim();
       }
       // --- End Add imageUrl ---
-      pendingDataForOtpStep = { ...apiData }; // Pass all details needed for creation later
+      //pendingDataForOtpStep = { ...apiData }; // Pass all details needed for creation later
     }
 
     console.log("Attempting signup / send OTP with data:", apiData);
 
     try {
+      // Send the apiData object (contains user + potentially restaurant info)
       const response = await sendOtp(apiData);
       console.log("Signup Component: Backend Response -", response.msg);
 
-      if (isRestaurantSignup) {
+      // Handle Response Based on Signup Type
+      if (isRestaurantSignup) { // Check internal state again
         setSuccessMessage(response.msg || 'Restaurant registration submitted. Please wait for admin approval.');
         // Clear form after successful submission for approval
         setEmail('');
@@ -94,12 +101,13 @@ const Signup = ({ switchToLogin, onOtpSent, isRestaurantMode = false, onCloseMod
         setAddressState('');
         setAddressZip('');
         setRestaurantImageUrl('');
-        // Optionally close modal after delay
-        // setTimeout(() => { if (onCloseModal) onCloseModal(); }, 3000);
+        // Optionally close modal
+        // if (onCloseModal) { setTimeout(onCloseModal, 3000); }
       } else {
-        // Customer signup
+        // Customer signup, OTP sent, switch to OTP view
         if (typeof onOtpSent === 'function') {
-            onOtpSent(email); // Only need email for customer OTP verify step
+            // Pass only email identifier; pendingData no longer needed here
+            onOtpSent(email);
         } else {
              console.error("Signup Error: onOtpSent prop is not a function!");
              setError("Internal application error.");
@@ -109,7 +117,7 @@ const Signup = ({ switchToLogin, onOtpSent, isRestaurantMode = false, onCloseMod
     } catch (err) {
       console.error("Signup/Send OTP Error:", err);
       setError(err.message || 'Failed to sign up. Please try again.');
-      setSuccessMessage('');
+      setSuccessMessage(''); // Clear success message on error
     } finally {
       setIsLoading(false);
     }
